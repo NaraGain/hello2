@@ -1,16 +1,16 @@
 function getFile(){
-    let xhr = new XMLHttpRequest()
+    var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200){
-            console.log(xhr.responseText);
-
+        if(this.status == 200 && this.readyState == 4){
+            document.querySelector('#demo').innerHTML = this.responseText
         }else{
-            console.error(this.status+ " Error Conncetion ");
+            document.querySelector('h1').innerHTML = this.status
         }
     }
-    xhr.open("GET","myFile.txt",true)
-    xhr.send()
-}
-document.addEventListener('DOMContentLoaded',function(){
-    document.querySelector('button').onclick = getFile
-})
+xhr.open('GET','myFile.txt')
+xhr.send()
+    }
+
+    document.addEventListener("DOMContentLoaded",function(){
+        document.querySelector('button').onclick = getFile
+    })
